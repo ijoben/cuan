@@ -125,44 +125,39 @@
         const WA_ADMIN = "6282249574471";
         // ================================
 
-        document.getElementById('formCuan').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nama = document.getElementById('nama').value.trim();
-            const wa = document.getElementById('wa').value.trim();
-            const status = document.getElementById('status');
-            
-            if(!nama || !wa) {
-                status.className = 'error';
-                status.innerHTML = "Isi nama & WA dulu ya bos";
-                return;
-            }
-            
-            status.className = 'loading';
-            status.innerHTML = "⏳ Mengirim data...";
-            
-            // Kirim ke Google Sheet via Webhook
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    nama: nama,
-                    wa: wa,
-                    sumber: window.location.hostname
-                })
-            }).catch(err => console.log('Error:', err));
-            
-            // Kasih delay 1.5 detik biar berasa ngirim, abis itu buka WA
-            setTimeout(function() {
-                status.className = 'success';
-                status.innerHTML = "✅ Sukses! Membuka WhatsApp...";
-                
-                const pesan = `Min, mau ebook Cuan AI dong. Nama saya ${nama}`;
-                const urlWA = `https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(pesan)}`;
-                window.location.href = urlWA;
-            }, 1500);
-        });
-    </script>
+document.getElementById('formCuan').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nama = document.getElementById('nama').value;
+    const wa = document.getElementById('wa').value;
+    const status = document.getElementById('status');
+    
+    if(!nama || !wa) {
+        status.innerHTML = "Isi nama & WA dulu bos";
+        status.style.color = "red";
+        return;
+    }
+    
+    status.innerHTML = "⏳ Mengirim ebook ke WhatsApp kamu...";
+    status.style.color = "#FFD700";
+    
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            nama: nama,
+            wa: wa,
+            sumber: "cuanai.vercel.app"
+        })
+    });
+    
+    // Kasih jeda 3 detik, munculin sukses
+    setTimeout(function() {
+        status.innerHTML = "✅ Sukses! Cek WhatsApp kamu sekarang. Ebook udah dikirim.";
+        status.style.color = "#00FF00";
+        document.getElementById('formCuan').reset(); // Kosongin form
+    }, 3000);
+});    </script>
 </body>
 </html>
