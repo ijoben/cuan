@@ -50,7 +50,7 @@
   @keyframes pulse-cta {
     0%, 100% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(255, 200, 87, 0.7), 0 10px 30px rgba(255, 159, 28, 0.4);
+      box-shadow: 0 0 rgba(255, 200, 87, 0.7), 0 10px 30px rgba(255, 159, 28, 0.4);
     }
     50% {
       transform: scale(1.03);
@@ -479,9 +479,8 @@
           <div class="bg-black/30 rounded-lg p-4 flex items-center justify-between mb-4">
             <div>
               <div class="text-xs text-gray-400 mb-1">Nama Kontak:</div>
-              <div class="font-bold text-lg">Admin Flash Community</div>
-              <!-- GANTI NOMOR WA DI SINI -->
-              <div class="text-amber-400 font-mono">+62 812-3456-7890</div>
+              <div class="font-bold text-lg">Admin Cuan AI</div>
+              <div class="text-amber-400 font-mono">0822-4957-4471</div>
             </div>
             <button onclick="copyNumber()" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition">
               <i class="fa-solid fa-copy"></i> Salin
@@ -490,7 +489,7 @@
           
           <ol class="space-y-2 text-sm text-gray-300">
             <li class="flex gap-2"><span class="step-number font-bold">1.</span> Salin nomor di atas</li>
-            <li class="flex gap-2"><span class="step-number font-bold">2.</span> Buka WA → Simpan sebagai "Admin Flash"</li>
+            <li class="flex gap-2"><span class="step-number font-bold">2.</span> Buka WA → Simpan sebagai "Admin Cuan AI"</li>
             <li class="flex gap-2"><span class="step-number font-bold">3.</span> Klik tombol dibawah untuk chat admin</li>
           </ol>
         </div>
@@ -633,14 +632,14 @@
   // KONFIGURASI - GANTI DI SINI
   // ============================================
   
-  // 1. GANTI NOMOR WA ADMIN - Format: 628xxx tanpa + atau spasi
-  const WA_NUMBER = '6281234567890'; 
+  // 1. NOMOR WA ADMIN - Format: 628xxx tanpa + atau spasi
+  const WA_NUMBER = '6282249574471'; 
   
   // 2. GANTI LINK EBOOK - Akan dikirim setelah user chat
   const EBOOK_LINK = 'https://drive.google.com/your-ebook-link';
   
   // 3. GANTI GOOGLE SHEET WEBHOOK URL - Untuk capture leads
-  const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwHGv3mHGkU0PHgJdgmYJwuFBbRXjxi8VV-fVF21wrXF7Tt6kpBVv544CRRn1IbifngjA/exec';
+  const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
   
   // ============================================
   
@@ -693,14 +692,14 @@
   
   // Step 2: Open WhatsApp
   function handleStep2() {
-    const message = `Halo Admin Flash Community,%0A%0ASaya ${userData.nama} mau download eBook GRATIS "15 METODE PRAKTIS Cuan dari Rumah".%0A%0ANo WA: ${userData.whatsapp}%0A%0ASudah saya save nomor admin. Mohon kirim link eBook + bonusnya ya 🙏`;
+    const message = `Min,%20mau%20ebook`;
     
     window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, '_blank');
   }
   
   // Copy number function
   function copyNumber() {
-    const number = '+62 812-3456-7890'; // GANTI SESUAI NOMOR DI ATAS
+    const number = '0822-4957-4471';
     navigator.clipboard.writeText(number).then(() => {
       alert('Nomor berhasil disalin!');
     });
